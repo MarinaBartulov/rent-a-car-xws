@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.7.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.example</groupId>
+    <artifactId>team19</artifactId>
+    <version>0.0.1</version>
+    <name>XmlAgentBack</name>
+    <description>XML_Agent</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version>
+        </dependency>
+        <!--Spring Security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId> <!--Spring-security-core, Spring-security-config, Spring-security-web-->
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--JWT token-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web-services</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!--Zbog klase HttpsUrlConnectionMessageSender-->
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-support</artifactId>
+            <version>2.2.4.RELEASE</version>
+        </dependency>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.14.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generatePackage>com.example.team19.wsdl</generatePackage>
+                    <schemas>
+                        <schema>
+                            <!--<url>https://localhost:8083/rent-service/ws/test.wsdl</url>-->
+                            <!--nisam uspela da bude preko zuul, ne moze da isparsira dobro nesto-->
+                            <url>http://localhost:8084/ws/test.wsdl</url>
+                       </schema>
+                        <schema>
+                            <url>http://localhost:8085/ws/Ad.wsdl</url>
+                        </schema>
+                        <schema>
+                            <url>http://localhost:8081/ws/User.wsdl</url>
+                        </schema>
+                        <schema>
+                            <url>http://localhost:8082/ws/comment.wsdl</url>
+                        </schema>
+                        <schema>
+                            <url>http://localhost:8084/ws/request.wsdl</url>
+                        </schema>
+                        <schema>
+                            <url>http://localhost:8084/ws/reservation.wsdl</url>
+                        </schema>
+                        <schema>
+                            <url>http://localhost:8082/ws/statistic.wsdl</url>
+                        </schema>
+                        <schema>
+                            <url>http://localhost:8084/ws/message.wsdl</url>
+                        </schema>
+                        <schema>
+                            <url>http://localhost:8085/ws/priceList.wsdl</url>
+                        </schema>
+                        <schema>
+                            <url>http://localhost:8084/ws/report.wsdl</url>
+                        </schema>
+                   </schemas>
+               </configuration>
+           </plugin>
+       </plugins>
+   </build>
+
+</project>
